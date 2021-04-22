@@ -3,6 +3,8 @@ import React from 'react';
 export const CTX = React.createContext();
 
 const initialState = {
+
+
     general: [
         {from: 'aaron', msg: 'hello'},
         {from: 'Ivan', msg: 'hello'},
