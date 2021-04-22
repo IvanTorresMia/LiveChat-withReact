@@ -7,7 +7,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Chip from "@material-ui/core/Chip";
 import Button from "@material-ui/core/Button";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
+import { CTX } from "./Store";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +40,16 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = () => {
   const classes = useStyles();
 
-  const [textValue, changeTextValue] = useState('')
+  // CTX STORE
+
+  const [allChats] = React.useContext(CTX);
+
+    console.log([allChats])
+
+    const topics = Object.keys(allChats)
+
+
+  const [textValue, changeTextValue] = useState("");
 
   return (
     <div>
@@ -51,7 +61,7 @@ const Dashboard = () => {
         <div className={classes.flex}>
           <div className={classes.topicsWindow}>
             <List>
-              {["topic"].map((topic) => (
+              {topics.map((topic) => (
                 <ListItem key={topic} button>
                   <ListItemText primary={topic} />
                 </ListItem>
@@ -62,13 +72,19 @@ const Dashboard = () => {
             {[{ from: "user", msg: "hello" }].map((chat, i) => (
               <div key={i} className={classes.flex}>
                 <Chip label={chat.from} />
-                <Typography variant="p">{chat.msg}</Typography>
+                <Typography variant="body1" gutterBottom>{chat.msg}</Typography>
               </div>
             ))}
           </div>
         </div>
         <div className={classes.flex}>
-        <TextField className={classes.chatBox} id="standard-basic" label="Message" value={textValue} onChange={e => changeTextValue(e.target.value)}/>
+          <TextField
+            className={classes.chatBox}
+            id="standard-basic"
+            label="Message"
+            value={textValue}
+            onChange={(e) => changeTextValue(e.target.value)}
+          />
           <Button variant="contained" color="primary">
             Send
           </Button>
