@@ -44,11 +44,12 @@ const Dashboard = () => {
 
   const [allChats] = React.useContext(CTX);
 
-    console.log([allChats])
+  console.log([allChats]);
 
-    const topics = Object.keys(allChats)
+  const topics = Object.keys(allChats);
 
-
+  // Local State
+  const [activeTopic, changeActiveTopic] = useState(topics[0]);
   const [textValue, changeTextValue] = useState("");
 
   return (
@@ -57,22 +58,24 @@ const Dashboard = () => {
         <Typography variant="h4" component="h4">
           Chat App
         </Typography>
-        <Typography component="p">place holder</Typography>
+        <Typography component="p">{activeTopic}</Typography>
         <div className={classes.flex}>
           <div className={classes.topicsWindow}>
             <List>
               {topics.map((topic) => (
-                <ListItem key={topic} button>
+                <ListItem onClick={e => changeActiveTopic(e.target.innerHTML)} key={topic} button>
                   <ListItemText primary={topic} />
                 </ListItem>
               ))}
             </List>
           </div>
           <div className={classes.chatWindow}>
-            {[{ from: "user", msg: "hello" }].map((chat, i) => (
+            {allChats[activeTopic].map((chat, i) => (
               <div key={i} className={classes.flex}>
                 <Chip label={chat.from} />
-                <Typography variant="body1" gutterBottom>{chat.msg}</Typography>
+                <Typography variant="body1" gutterBottom>
+                  {chat.msg}
+                </Typography>
               </div>
             ))}
           </div>
