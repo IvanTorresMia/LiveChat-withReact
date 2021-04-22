@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,14 +45,23 @@ const Dashboard = () => {
         <div className={classes.flex}>
           <div className={classes.topicsWindow}>
             <List>
-              {[].map((topic) => (
-                <ListItem button>
-                  <ListItemText primary="Drafts" />
+              {['topic'].map((topic) => (
+                <ListItem key={topic} button>
+                  <ListItemText primary={topic} />
                 </ListItem>
               ))}
             </List>
           </div>
-          <div className={classes.chatWindow}></div>
+          <div className={classes.chatWindow}>
+                {
+                    [{from: 'user', msg: 'hello'}].map((chat) => (
+                        <div className={classes.flex}>
+
+                        </div>
+                    ))
+                }
+         
+          </div>
         </div>
         <div className={classes.flex}></div>
       </Paper>
