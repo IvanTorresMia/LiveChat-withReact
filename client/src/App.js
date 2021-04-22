@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Dashboard from "./Components/Dashboard";
 
-import Store from "./Components/Store";
+import Store from "./Store";
 
 function App() {
   return (
